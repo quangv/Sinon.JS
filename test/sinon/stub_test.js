@@ -68,6 +68,21 @@ if (typeof require == "function" && typeof testCase == "undefined") {
             assertUndefined(stub());
         }
     });
+
+    testCase("StubProtoTest", {
+      "should have proto method": function () {
+          var stub = sinon.stub.create();
+
+          assertFunction(stub.proto);
+      },
+      "should set prototype": function () {
+          var stub = sinon.stub.create();
+          var object = {foo:'bar'};
+          stub.proto(object);
+
+          assertSame(object, stub.prototype);
+      },
+    });
     
     testCase("StubReturnsArgTest", {
         "should have returnsArg method": function() {
